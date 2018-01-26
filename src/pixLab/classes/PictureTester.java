@@ -18,6 +18,14 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testHunter()
+  {
+	  Picture sample = new Picture("beach.jpg");
+	  sample.explore();
+	  sample.HunterFilter(sample.getHeight()/2, sample.getWidth()/2);
+	  sample.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -81,5 +89,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+    testHunter();
   }
 }
