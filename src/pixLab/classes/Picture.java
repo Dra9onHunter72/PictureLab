@@ -98,7 +98,7 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
+
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -188,7 +188,6 @@ public class Picture extends SimplePicture
 		  for (int toCol = startCol; fromCol < fromPixels[0].length && toCol < toPixels[0].length; toCol++) 
 		  {
 			  fromPixel = fromPixels[fromRow][fromCol];
-			  
 			  toPixel = toPixels[toRow][toCol];
 			  if(!fromPixel.isTransparent())
 			  {
@@ -200,6 +199,28 @@ public class Picture extends SimplePicture
 	  }
   }
 
+  public void glitchFilter()
+  {
+	  Pixel [][] pixels = this.getPixels2D();
+	  int shiftAmount = (int) (33 * pixels[0].length);
+	  int width = pixels[0].length;
+	
+	  for(int row = 0; row < pixels.length; row++)
+	  {
+		 Color [] currentColors = new Color[pixels.length];
+		 
+		 for (int col = 0; col < pixels[row].length; col++)
+		 {
+			 currentColors[col] = pixels[row][col].getColor();
+		 }
+		 
+		 for (int col = 0; col < pixels[0].length; col++)
+		 {
+			 pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		 }
+	  }
+  }
+  
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
@@ -252,7 +273,7 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.glitchFilter();
     beach.explore();
   }
   

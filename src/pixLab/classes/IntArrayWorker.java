@@ -98,11 +98,14 @@ public class IntArrayWorker
           matrix[row][col] = 3;
       }
     }
+    
+    
   }
  
   public int getCount()
   {
-	  Integer.MIN_VALUE;
+	  int smallest = Integer.MIN_VALUE;
+	  return smallest;
   }
   
   public static void testGetLargest()
