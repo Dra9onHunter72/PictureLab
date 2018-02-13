@@ -207,7 +207,7 @@ public class Picture extends SimplePicture
 	
 	  for(int row = 0; row < pixels.length; row++)
 	  {
-		 Color [] currentColors = new Color[pixels.length];
+		 Color [] currentColors = new Color[pixels[0].length];
 		 
 		 for (int col = 0; col < pixels[row].length; col++)
 		 {
@@ -218,7 +218,23 @@ public class Picture extends SimplePicture
 		 {
 			 pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
 		 }
+		 
+		 Pixel[][]smallPixel = this.getPixels2D();
+		 Pixel leftPixel = null;
+		 Pixel rightPixel = null;
+		 int smallWidth = (int) (.80 * pixels[0].length);
+		 for (int row1 = 0; row1 < pixels.length; row++)
+		 {
+		    for (int col1 = 0; col1 < smallWidth / 2; col1++)
+			{
+				leftPixel = smallPixel[row1][col1];
+				rightPixel = smallPixel[row1][smallWidth - 1 - col1];
+			    rightPixel.setColor(leftPixel.getColor());
+			}
+		 }
 	  }
+	  
+	  
   }
   
   /** Method to create a collage of several pictures */
