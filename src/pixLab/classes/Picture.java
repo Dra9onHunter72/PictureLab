@@ -202,7 +202,7 @@ public class Picture extends SimplePicture
   public void glitchFilter()
   {
 	  Pixel [][] pixels = this.getPixels2D();
-	  int shiftAmount = (int) (33 * pixels[0].length);
+	  int shiftAmount = (int) (.33 * pixels[0].length);
 	  int width = pixels[0].length;
 	
 	  for(int row = 0; row < pixels.length; row++)
@@ -218,22 +218,23 @@ public class Picture extends SimplePicture
 		 {
 			 pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
 		 }
-		 
-		 Pixel[][]smallPixel = this.getPixels2D();
-		 Pixel leftPixel = null;
-		 Pixel rightPixel = null;
-		 int smallWidth = (int) (.80 * pixels[0].length);
-		 for (int row1 = 0; row1 < pixels.length; row++)
-		 {
-		    for (int col1 = 0; col1 < smallWidth / 2; col1++)
-			{
-				leftPixel = smallPixel[row1][col1];
-				rightPixel = smallPixel[row1][smallWidth - 1 - col1];
-			    rightPixel.setColor(leftPixel.getColor());
-			}
-		 }
 	  }
 	  
+	  Pixel[][]smallPixel = this.getPixels2D();
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  int smallWidth = (int) (.80 * pixels[0].length);
+	  for (int row1 = 0; row1 < pixels.length; row1++)
+	  {
+	     for (int col1 = 0; col1 < smallWidth / 2; col1++)
+		 {
+		 	 leftPixel = smallPixel[row1][col1];
+			 rightPixel = smallPixel[row1][smallWidth - 1 - col1];
+			 rightPixel.setColor(leftPixel.getColor());
+		 }
+	  }
+		 
+	 
 	  
   }
   
