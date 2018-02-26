@@ -234,7 +234,8 @@ public class Picture extends SimplePicture
 		 }
 	  }
 		 
-	 
+	  
+			  
 	  
   }
   
